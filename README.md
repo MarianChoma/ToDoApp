@@ -27,4 +27,5 @@ npm start
 
 
 ##Documentation
+
 Swagger documentation [here](https://app.swaggerhub.com/apis-docs/MarianChoma/ToDoApp/1.0.0)
