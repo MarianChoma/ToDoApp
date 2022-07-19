@@ -21,6 +21,9 @@ const createList = async (body: any) => {
     });
     return list;
 }
+const getAllLists = async () => {
+    return await ListModel.List.findAll({raw: true})
+}
 
 const shareList = async (body: any) => {
     const {listId, addId, userId} = body;
@@ -66,12 +69,7 @@ const findById = async (id: number) => {
         }
     })
 }
-module.exports = {
-    createList,
-    shareList,
-    deleteList,
-    findById
-}
+
 
 async function check(userId: number, listId: number) {
 
@@ -88,4 +86,12 @@ async function check(userId: number, listId: number) {
         }
     })
     return canShare
+}
+
+module.exports = {
+    createList,
+    shareList,
+    deleteList,
+    findById,
+    getAllLists
 }

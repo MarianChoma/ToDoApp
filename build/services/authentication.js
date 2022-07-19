@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", {value: true});
 exports.authenticateToken = void 0;
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-
 function authenticateToken(req, res, next) {
     const token = req.headers.accesstoken;
     if (token === null) {
@@ -22,6 +21,5 @@ function authenticateToken(req, res, next) {
         }
     });
 }
-
 exports.authenticateToken = authenticateToken;
 module.exports = authenticateToken;

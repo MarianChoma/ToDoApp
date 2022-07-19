@@ -44,7 +44,7 @@ const updateTask = async (body: any) => {
     }
     const canUpdate = await checkOwner(userId, task.listId)
     if (canUpdate) {
-        await task.update({name, description, deadline}).catch((e: Error) => console.log(e));
+        await task.update({name, description, deadline, done}).catch((e: Error) => console.log(e));
     } else {
         throw new Error();
     }
@@ -77,8 +77,17 @@ const findTaskById = async (taskId: number) => {
         }
     })
 }
+const findTasksByListId = async (listId: number) => {
+    return await Task.findAll({
+        where: {
+            listId: listId
+        },
+        raw: true
+    })
+}
 module.exports = {
     createTask,
     updateTask,
-    deleteTask
+    deleteTask,
+    findTasksByListId
 }

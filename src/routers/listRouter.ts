@@ -7,6 +7,7 @@ import {TypedRequestBody} from '../TypedRequestBody';
 
 const router = express.Router();
 const ListService = require('../services/listService');
+const serviceTask = require('../services/taskService');
 
 
 router.post('/list', authenticateToken, async (req: TypedRequestBody<{ title: String, userId: number }>, res: Response) => {
@@ -37,6 +38,10 @@ router.delete('/list', authenticateToken, async (req: TypedRequestBody<{ listId:
     } catch (e) {
         res.sendStatus(404);
     }
+})
+router.get('/list', async (req: TypedRequestBody<{ listId: number, userId: number }>, res: Response) => {
+    const lists = await ListService.getAllLists();
+    res.send({lists: lists});
 
 })
 

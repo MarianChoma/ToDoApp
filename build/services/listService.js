@@ -5,7 +5,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
             resolve(value);
         });
     }
-
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) {
             try {
@@ -50,6 +49,9 @@ const createList = (body) => __awaiter(void 0, void 0, void 0, function* () {
     });
     return list;
 });
+const getAllLists = () => __awaiter(void 0, void 0, void 0, function* () {
+    return yield ListModel.List.findAll({raw: true});
+});
 const shareList = (body) => __awaiter(void 0, void 0, void 0, function* () {
     const {listId, addId, userId} = body;
     const list = yield findById(listId);
@@ -93,13 +95,6 @@ const findById = (id) => __awaiter(void 0, void 0, void 0, function* () {
         }
     });
 });
-module.exports = {
-    createList,
-    shareList,
-    deleteList,
-    findById
-};
-
 function check(userId, listId) {
     return __awaiter(this, void 0, void 0, function* () {
         const lists = yield ListModel.UserLists.findAll({
@@ -116,3 +111,11 @@ function check(userId, listId) {
         return canShare;
     });
 }
+
+module.exports = {
+    createList,
+    shareList,
+    deleteList,
+    findById,
+    getAllLists
+};

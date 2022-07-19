@@ -5,7 +5,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
             resolve(value);
         });
     }
-
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) {
             try {
@@ -70,7 +69,7 @@ const updateTask = (body) => __awaiter(void 0, void 0, void 0, function* () {
     }
     const canUpdate = yield (0, checkOwner_1.checkOwner)(userId, task.listId);
     if (canUpdate) {
-        yield task.update({name, description, deadline}).catch((e) => console.log(e));
+        yield task.update({name, description, deadline, done}).catch((e) => console.log(e));
     } else {
         throw new Error();
     }
@@ -98,8 +97,17 @@ const findTaskById = (taskId) => __awaiter(void 0, void 0, void 0, function* () 
         }
     });
 });
+const findTasksByListId = (listId) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield Task.findAll({
+        where: {
+            listId: listId
+        },
+        raw: true
+    });
+});
 module.exports = {
     createTask,
     updateTask,
-    deleteTask
+    deleteTask,
+    findTasksByListId
 };

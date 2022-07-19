@@ -5,7 +5,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
             resolve(value);
         });
     }
-
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) {
             try {
@@ -35,6 +34,7 @@ const authenticateToken = require('../services/authentication');
 const express = require('express');
 const router = express.Router();
 const ListService = require('../services/listService');
+const serviceTask = require('../services/taskService');
 router.post('/list', authenticateToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     try {
@@ -61,5 +61,9 @@ router.delete('/list', authenticateToken, (req, res) => __awaiter(void 0, void 0
     } catch (e) {
         res.sendStatus(404);
     }
+}));
+router.get('/list', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const lists = yield ListService.getAllLists();
+    res.send({lists: lists});
 }));
 module.exports = router;
