@@ -1,13 +1,18 @@
-import express, {Application, Request, Response} from 'express';
+import express from "express";
 
-const app: Application = express();
-const bcrypt= require('bcrypt');
+const app = express();
+const userRouter = require('./routers/userRouter');
+const listRouter = require('./routers/listRouter');
+const taskRouter = require('./routers/taskRouter');
 const port: number = 3000;
 
-app.get('/', (req: Request, res: Response)=>{
-    res.send('Hello world');
-})
 
-app.listen(port, ()=>{
+require("./database/connection");
+app.use(express.json());
+app.use(userRouter);
+app.use(listRouter);
+app.use(taskRouter)
+
+app.listen(port, () => {
     console.log(`Connected successfully on port ${port}`);
 })
