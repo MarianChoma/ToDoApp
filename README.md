@@ -14,7 +14,7 @@ npm start
 
 
 
-##Functional requirements
+## Functional requirements
 - Authentication (login, registration)
 - Creating lists (1 user can have multiple lists, one list can belong to multiple users)
 - The list must contain a title
@@ -26,6 +26,6 @@ npm start
 
 
 
-##Documentation
+## Documentation
 
 Swagger documentation [here](https://app.swaggerhub.com/apis-docs/MarianChoma/ToDoApp/1.0.0)
